@@ -41,7 +41,7 @@ public class FrontierMainMenuController extends Application {
     
     @FXML
     void multiplayerSetup(ActionEvent event) {
-
+    	// Add multiplay scene
     }
     
     @FXML
