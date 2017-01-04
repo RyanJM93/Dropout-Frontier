@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+
+<StackPane fx:id="unit" onMouseClicked="#mouseSelected" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rjm.dropout.frontier.objects.UnitCombat">
+   <children>
+      <Circle fx:id="polygon" fill="DODGERBLUE" onMouseClicked="#mouseSelected" pickOnBounds="true" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" StackPane.alignment="CENTER">
+         <effect>
+            <DropShadow color="#0000008d" offsetY="10.0" />
+         </effect>
+         <StackPane.margin>
+            <Insets left="-40.0" top="-40.0" />
+         </StackPane.margin>
+      </Circle>
+      <ImageView fx:id="icon" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/units/prophetIcon.png" />
+         </image>
+         <StackPane.margin>
+            <Insets left="-40.0" top="-40.0" />
+         </StackPane.margin>
+      </ImageView>
+   </children>
+   <rotationAxis>
+      <Point3D x="40.0" y="40.0" z="1.0" />
+   </rotationAxis>
+</StackPane>

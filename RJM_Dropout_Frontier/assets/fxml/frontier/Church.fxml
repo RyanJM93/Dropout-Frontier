@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="city" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rjm.dropout.frontier.objects.Church">
+   <children>
+      <ImageView fx:id="religiousBuilding" fitHeight="80.0" fitWidth="80.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/city/euroChurch1.png" />
+         </image>
+         <StackPane.margin>
+            <Insets left="-40.0" top="-40.0" />
+         </StackPane.margin>
+      </ImageView>
+      <Rectangle fx:id="namePlate" arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="40.0" onMouseClicked="#mouseSelected" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="40.0">
+         <StackPane.margin>
+            <Insets left="-40.0" top="-200.0" />
+         </StackPane.margin>
+      </Rectangle>
+      <ImageView fx:id="religiousSymbol" fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/religion/paganism0.png" />
+         </image>
+         <StackPane.margin>
+            <Insets left="-40.0" top="-200.0" />
+         </StackPane.margin>
+      </ImageView>
+   </children>
+   <rotationAxis>
+      <Point3D x="40.0" y="40.0" z="1.0" />
+   </rotationAxis>
+</StackPane>

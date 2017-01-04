@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Civilizations>
+	<Civilization name="Gaelic Ireland" adj="Gaelic">
+		<Color name="StPartricksBlue">
+			<r>35</r>
+			<g>41</g>
+			<b>122</b>
+		</Color>
+		<Icon name="ireland0.png"/>
+		<Cities>	
+			<City name="Baile Átha Cliath"/>
+			<City name="Ard Mhacha"/>
+			<City name="Caiseal"/>
+			<City name="Tuaim"/>
+			<City name="Sligeach"/>
+			<City name="Caisleán an Bharraigh"/>
+			<City name="Béal an Átha"/>
+			<City name="Béal Átha na Slua"/>
+			<City name="Cathair na Mart"/>
+			<City name="Baile Locha Riach"/>
+			<City name="Órán Mór"/>
+			<City name="Cora Droma Rúisc"/>
+			<City name="Clár Chlainne Mhuiris"/>
+			<City name="Baile Átha an Rí"/>
+			<City name="Corcaigh"/>
+			<City name="Luimneach"/>
+			<City name="Port Láirge"/>
+			<City name="Inis"/>
+			<City name="Trá Lí"/>
+			<City name="Cluain Meala"/>
+			<City name="Tamhlacht"/>
+			<City name="Baile Bhlainséir"/>
+			<City name="Leamhcán"/>
+			<City name="Cluain Dolcáin"/>
+			<City name="Droichead Átha"/>
+			<City name="Dún Dealgan"/>
+			<City name="Sord Cholmcille"/>
+			<City name="Bré"/>
+			<City name="An Uaimh"/>
+			<City name="An Charraig Dhubh"/>
+			<City name="Cill Chainnigh"/>
+			<City name="Ceatharlach"/>
+			<City name="Béal Feirste"/>
+			<City name="Doire"/>
+			<City name="Lios na gCearrbhach"/>
+			<City name="Beannchar"/>
+			<City name="An Baile Meánach"/>
+			<City name="Magh Bhile"/>
+			<City name="Iúr Cinn Trá"/>
+			<City name="Carraig Feargais"/>
+			<City name="Cúil Rathain"/>
+			<City name="Aontroim"/>
+			<City name="An Ómaigh"/>
+			<City name="Leitir Ceanainn"/>
+			<City name="Latharna"/>
+			<City name="Baile an Bhealaigh"/>
+			<City name="Port na Binne Uaine"/>
+		</Cities>
+		<Counties>
+			<County name="Meadh"/>
+			<County name="Uí Néill"/>
+			<County name="Connacht"/>
+			<County name="Munster"/>
+			<County name="Laigin"/>
+			<County name="Airgialla"/>
+			<County name="Ulaid"/>
+		</Counties>
+		<StartBias>
+			<Terrain type="GRASSLAND"/>
+		</StartBias>
+	</Civilization>
+	<Civilization name="Kingdom of England" adj="English">
+		<Color name="EnglishOrange">
+			<r>247</r>
+			<g>150</g>
+			<b>70</b>
+		</Color>
+		<Icon name="england0.png"/>
+		<Cities>
+			<City name="London"/>
+			<City name="Liverpool"/>
+			<City name="Manchester"/>	
+		</Cities>
+		<StartBias>
+			<Terrain type="GRASSLAND"/>
+		</StartBias>
+	</Civilization>
+	<Civilization name="Kingdom of France" adj="French">
+		<Color name="FrenchYellow">
+			<r>255</r>
+			<g>204</g>
+			<b>0</b>
+		</Color>
+		<Icon name="france0.png"/>
+		<Cities>
+			<City name="Paris"/>
+			<City name="Lyon"/>
+			<City name="Marselle"/>	
+		</Cities>
+		<StartBias>
+			<Terrain type="GRASSLAND"/>
+		</StartBias>
+	</Civilization>
+	<Civilization name="Ayyubid Sultanate" adj="Ayyubid">
+		<Color name="AyyubidGold">
+			<r>204</r>
+			<g>153</g>
+			<b>0</b>
+		</Color>
+		<Icon name="ayyubid0.png"/>
+		<Cities>
+			<City name="Cairo"/>
+			<City name="Aleppo"/>
+			<City name="Tripoli"/>	
+			<City name="Aden"/>	
+		</Cities>
+		<StartBias>
+			<Terrain type="DESERT"/>
+			<Terrain type="SAVANNAH"/>
+		</StartBias>
+	</Civilization>
+	<Civilization name="Kingdom of Denmark" adj="Danish">
+		<Color name="SnowWhite">
+			<r>242</r>
+			<g>242</g>
+			<b>242</b>
+		</Color>
+		<Icon name="denmark0.png"/>
+		<Cities>
+			<City name="Copenhagen"/>
+			<City name="Arhus"/>
+			<City name="Skagen"/>	
+			<City name="Alborg"/>	
+			<City name="Vejle"/>	
+			<City name="Kolding"/>	
+			<City name="Esbjerg"/>	
+			<City name="Abenra"/>	
+			<City name="Odense"/>	
+			<City name="Ronne"/>
+		</Cities>
+		<StartBias>
+			<Terrain type="TUNDRA"/>
+			<Terrain type="TAIGA"/>
+			<Terrain type="GRASSLAND"/>
+		</StartBias>
+	</Civilization>
+	<Civilization name="Kingdom of Norway" adj="Norwegian">
+		<Color name="NorwegianRed">
+			<r>237</r>
+			<g>41</g>
+			<b>57</b>
+		</Color>
+		<Icon name="norway0.png"/>
+		<Cities>
+			<City name="Trondheim"/>
+			<City name="Oslo"/>
+			<City name="Bergen"/>	
+			<City name="Stavanger"/>	
+			<City name="Alesund"/>	
+			<City name="Drammen"/>	
+			<City name="Leikanger"/>	
+			<City name="Kristiansund"/>	
+			<City name="Bodo"/>	
+			<City name="Mo i Rana"/>
+			<City name="Harstad"/>
+			<City name="Narvik"/>
+			<City name="Tromso"/>
+			<City name="Alta"/>
+			<City name="Vadso"/>
+			<City name="Steinkier"/>
+			<City name="Molde"/>
+			<City name="Haugesund"/>
+			<City name="Kristiansand"/>
+			<City name="Arendal"/>
+			<City name="Skien"/>
+			<City name="Kongsberg"/>
+			<City name="Ringerike"/>
+			<City name="Gjovik"/>
+			<City name="Lillehammer"/>
+			<City name="Hamar"/>
+			<City name="Kongsviger"/>
+			<City name="Fredrikstad"/>
+		</Cities>
+		<StartBias>
+			<Terrain type="TUNDRA"/>
+			<Terrain type="TAIGA"/>
+			<Terrain type="GRASSLAND"/>
+		</StartBias>
+	</Civilization>
+	<Civilization name="Kingdom of Sweden" adj="Swedish">
+		<Color name="SwedishGold">
+			<r>245</r>
+			<g>198</g>
+			<b>0</b>
+		</Color>
+		<Icon name="sweden0.png"/>
+		<Cities>
+			<City name="Stockholm"/>
+			<City name="Goteborg"/>
+			<City name="Malmo"/>
+			<City name="Vasteras"/>
+			<City name="Uppsala"/>
+			<City name="Lund"/>
+			<City name="Helsingborg"/>
+			<City name="Angelholm"/>
+			<City name="Vaxjo"/>
+			<City name="Halmstad"/>
+			<City name="Varberg"/>
+			<City name="Kalmar"/>
+			<City name="Karlskrona"/>
+			<City name="Uddevalla"/>
+			<City name="Boras"/>
+			<City name="Jonkoping"/>
+			<City name="Vastervik"/>
+			<City name="Visby"/>
+			<City name="Trollhattan"/>
+			<City name="Linkoping"/>
+			<City name="Norrkoping"/>
+			<City name="Nykoping"/>
+			<City name="Sodertalje"/>
+			<City name="Eskilstuna"/>
+			<City name="Karlstad"/>
+			<City name="Orebro"/>
+			<City name="Marsta"/>
+			<City name="Borlange"/>
+			<City name="Mora"/>
+			<City name="Falun"/>
+			<City name="Gavle"/>
+			<City name="Sandviken"/>
+			<City name="Sundsvall"/>
+			<City name="Harnosand"/>
+			<City name="Ostersund"/>
+			<City name="Ornskoldsvik"/>
+			<City name="Umea"/>
+			<City name="Skelleftea"/>
+			<City name="Pitea"/>
+			<City name="Boden"/>
+			<City name="Lulea"/>
+			<City name="Kiruna"/>
+		</Cities>
+		<StartBias>
+			<Terrain type="TUNDRA"/>
+			<Terrain type="TAIGA"/>
+			<Terrain type="GRASSLAND"/>
+		</StartBias>
+	</Civilization>
+	<Civilization name="Republic of Finland" adj="Finnish">
+		<Color name="FinnishBlue">
+			<r>0</r>
+			<g>47</g>
+			<b>108</b>
+		</Color>
+		<Icon name="finland0.png"/>
+		<Cities>
+			<City name="Helsinki"/>
+			<City name="Turku"/>
+			<City name="Tampere"/>
+			<City name="Oulu"/>
+			<City name="Espoo"/>
+			<City name="Mariehamn"/>
+			<City name="Salo"/>
+			<City name="Kotka"/>
+			<City name="Riihimaki"/>
+			<City name="Hameenlinna"/>
+			<City name="Rauma"/>
+			<City name="Pori"/>
+			<City name="Nokia"/>
+			<City name="Valkeakoski"/>
+			<City name="Lahti"/>
+			<City name="Kouvola"/>
+			<City name="Lappeenranta"/>
+			<City name="Imatra"/>
+			<City name="Mikkeli"/>
+			<City name="Savoninna"/>
+			<City name="Varkaus"/>
+			<City name="Jyvaskyla"/>
+			<City name="Seinajoki"/>
+			<City name="Kuopio"/>
+			<City name="Joensuu"/>
+			<City name="Vaasa"/>
+			<City name="Kokkola"/>
+			<City name="Iisalmi"/>
+			<City name="Kajaani"/>
+			<City name="Kemi"/>
+			<City name="Tornio"/>
+			<City name="Rovaniemi"/>
+		</Cities>
+		<StartBias>
+			<Terrain type="TUNDRA"/>
+			<Terrain type="TAIGA"/>
+			<Terrain type="GRASSLAND"/>
+		</StartBias>
+	</Civilization>
+	<Civilization name="United States of America" adj="American">
+		<Color name="FreedomWhite">
+			<r>242</r>
+			<g>242</g>
+			<b>242</b>
+		</Color>
+		<Icon name="usa0.png"/>
+		<Cities>
+			<City name="Armstrong"/>
+			<City name="Aldrin"/>
+			<City name="Collins"/>
+			<City name="Shepardtown"/>
+			<City name="Port Jefferson"/>
+			<City name="Cape Mattingly"/>
+			<City name="New Hartford"/>
+			<City name="New Austin"/>
+			<City name="Faustin"/>
+			<City name="Commenden"/>
+		</Cities>
+		<StartBias>
+			<Terrain type="GRASSLAND"/>
+			<Terrain type="SAVANNAH"/>
+			<Terrain type="FOREST"/>
+		</StartBias>
+	</Civilization>
+</Civilizations>

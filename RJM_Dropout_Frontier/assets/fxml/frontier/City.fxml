@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="city" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rjm.dropout.frontier.objects.City">
+   <children>
+      <ImageView fitHeight="80.0" fitWidth="80.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/city/euroVillage1.png" />
+         </image>
+         <StackPane.margin>
+            <Insets left="-40.0" top="-40.0" />
+         </StackPane.margin>
+      </ImageView>
+      <Rectangle fx:id="namePlate" arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="50.0" onMouseClicked="#mouseSelected" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="250.0">
+         <StackPane.margin>
+            <Insets left="-40.0" top="-200.0" />
+         </StackPane.margin>
+      </Rectangle>
+      <HBox fx:id="cityInfoPane" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mouseTransparent="true" prefHeight="28.0" StackPane.alignment="CENTER_RIGHT">
+         <children>
+            <Label fx:id="nameLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="190.0" mouseTransparent="true" nodeOrientation="LEFT_TO_RIGHT" rotate="180.0" text="?" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS" StackPane.alignment="CENTER">
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets left="-40.0" top="-200.0" />
+               </StackPane.margin>
+               <rotationAxis>
+                  <Point3D y="1.0" />
+               </rotationAxis>
+            </Label>
+            <Separator mouseTransparent="true" orientation="VERTICAL" prefHeight="200.0">
+               <padding>
+                  <Insets left="4.0" right="4.0" />
+               </padding>
+            </Separator>
+            <Label fx:id="populationLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="40.0" mouseTransparent="true" nodeOrientation="LEFT_TO_RIGHT" rotate="180.0" text="?" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+               <rotationAxis>
+                  <Point3D y="1.0" />
+               </rotationAxis>
+            </Label>
+         </children>
+         <StackPane.margin>
+            <Insets right="-80.0" top="-200.0" />
+         </StackPane.margin>
+      </HBox>
+   </children>
+   <rotationAxis>
+      <Point3D x="40.0" y="40.0" z="1.0" />
+   </rotationAxis>
+</StackPane>

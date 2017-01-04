@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="mainStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rjm.dropout.frontier.FrontierSinglePlayerSetupController">
+   <children>
+      <ImageView fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/menu/MenuBackground.jpg" />
+         </image>
+         <viewport>
+            <Rectangle2D height="1621.0" width="2881.0" />
+         </viewport>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
+         <image>
+            <Image url="@../../images/menu/Dropout%20-%20Frontier.png" />
+         </image>
+         <StackPane.margin>
+            <Insets top="16.0" />
+         </StackPane.margin>
+      </ImageView>
+      <VBox alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="main-menu-box-quit" StackPane.alignment="BOTTOM_RIGHT">
+         <children>
+            <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="60.0" styleClass="main-menu-box" StackPane.alignment="BOTTOM_RIGHT">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#backToMenu" styleClass="menu-button-hud" text="Back to Menu" textFill="#abe3ff">
+                           <font>
+                              <Font name="HelveticaObl-Li" size="24.0" />
+                           </font>
+                           <effect>
+                              <DropShadow color="#68cdff" />
+                           </effect>
+                        </Button>
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                     <padding>
+                        <Insets left="32.0" right="24.0" />
+                     </padding>
+                  </HBox>
+         </children>
+         <padding>
+            <Insets bottom="8.0" left="16.0" right="8.0" top="8.0" />
+         </padding>
+      </VBox>
+      <HBox alignment="BOTTOM_LEFT">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="21.0" styleClass="stats-panel-90" />
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="stats-panel" HBox.hgrow="ALWAYS" StackPane.alignment="BOTTOM_LEFT">
+               <StackPane.margin>
+                  <Insets left="71.0" right="300.0" top="120.0" />
+               </StackPane.margin>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox>
+                           <children>
+                              <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="540.0" prefWidth="204.0">
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </HBox.margin>
+                                 <content>
+                                    <VBox fx:id="civilizationVBox" alignment="TOP_CENTER" prefWidth="200.0">
+                                       <children>
+                                          <fx:include source="CivilizationItemTemplate.fxml" />
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                              <HBox alignment="CENTER" spacing="8.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#addPlayer" style="-fx-text-fill: lightgray; -fx-border-color: lightgray;" styleClass="button-hud" text="Add Player" />
+                                    <Button mnemonicParsing="false" onAction="#subtractPlayer" style="-fx-text-fill: lightgray; -fx-border-color: lightgray;" styleClass="button-hud" text="Subtract Player" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </HBox.margin>
+                           <children>
+                              <Label text="Game Setup" textFill="#abe3ff">
+                                 <font>
+                                    <Font name="HelveticaObl-Li" size="24.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#68cdff" />
+                                 </effect>
+                              </Label>
+                              <Separator prefWidth="200.0" />
+                              <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="4.0">
+                                 <children>
+                                    <Label text="Map Options" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets bottom="8.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
+                                       <children>
+                                          <Label text="Map Type:" textFill="WHITE" />
+                                          <ChoiceBox fx:id="mapTypeChoiceBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
+                                       <children>
+                                          <Label text="Map Size:" textFill="WHITE" />
+                                          <ChoiceBox fx:id="mapSizeChoiceBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
+                                       <children>
+                                          <Label text="World Age:" textFill="WHITE" />
+                                          <ChoiceBox fx:id="worldAgeChoiceBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
+                                       <children>
+                                          <Label text="Temperature: " textFill="WHITE" />
+                                          <ChoiceBox fx:id="temperatureChoiceBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
+                                       <children>
+                                          <Label text="Resources:" textFill="WHITE" />
+                                          <ChoiceBox fx:id="resourceChoiceBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
+                                       <children>
+                                          <Label text="Start Position:" textFill="WHITE" />
+                                          <ChoiceBox fx:id="startPositionChoiceBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="16.0" right="16.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="4.0">
+                                 <children>
+                                    <Label text="Game Options" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets bottom="8.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox alignment="CENTER_RIGHT" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
+                                       <children>
+                                          <Label text="Map Type:" textFill="WHITE" />
+                                          <ChoiceBox prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0">
+                                       <children>
+                                          <Label text="Only Unique Civilizations:" textFill="WHITE" />
+                                          <CheckBox fx:id="onlyUniqueCheckBox" graphicTextGap="0.0" mnemonicParsing="false">
+                                             <HBox.margin>
+                                                <Insets left="64.0" right="64.0" top="4.0" />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="16.0" right="16.0" top="8.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#launchGame" style="-fx-text-fill: lightgray; -fx-border-color: lightgray;" styleClass="button-hud" text="Launch Game" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="16.0" right="16.0" />
+                                 </VBox.margin>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="8.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <StackPane.margin>
+            <Insets left="50.0" right="280.0" top="120.0" />
+         </StackPane.margin>
+      </HBox>
+   </children>
+</StackPane>

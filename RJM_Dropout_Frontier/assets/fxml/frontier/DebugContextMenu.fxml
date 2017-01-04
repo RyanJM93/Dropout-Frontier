@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+
+<ContextMenu fx:id="debugContextMenu" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rjm.dropout.frontier.utilities.DebugContextMenuController">
+   <items>
+      <Menu mnemonicParsing="false" text="Change Player">
+         <items>
+            <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
+               <content>
+                  <ChoiceBox fx:id="playerChoiceBox" prefWidth="150.0" />
+               </content>
+            </CustomMenuItem>
+         </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Spawn">
+         <items>
+            <Menu mnemonicParsing="false" text="Holding">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#spawnChurch" text="Church" />
+                <MenuItem mnemonicParsing="false" onAction="#spawnCity" text="City" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Unit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#spawnProphet" text="Prophet" />
+                  <MenuItem mnemonicParsing="false" onAction="#spawnSettler" text="Settler" />
+                  <MenuItem mnemonicParsing="false" onAction="#spawnWarrior" text="Warrior" />
+               </items>
+            </Menu>
+         </items>
+      </Menu>
+   </items>
+</ContextMenu>

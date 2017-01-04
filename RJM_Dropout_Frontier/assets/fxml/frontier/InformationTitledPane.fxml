@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TitledPane fx:id="informationTitledPane" alignment="BOTTOM_LEFT" focusTraversable="false" maxHeight="600.0" maxWidth="400.0" minHeight="-Infinity" minWidth="-Infinity" rotate="180.0" stylesheets="@../../css/DropoutFrontier.css" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox fx:id="informationVBox" rotate="180.0" styleClass="vbox" />
+   </content>
+   <graphic>
+      <Label rotate="180.0" text="Information" textFill="#9a9a9a">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </graphic>
+</TitledPane>

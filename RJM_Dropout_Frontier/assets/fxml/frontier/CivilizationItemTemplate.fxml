@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="civilizationTemplate" spacing="4.0" style="-fx-border-color: lightblue; -fx-background-color: steelblue;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rjm.dropout.frontier.CivilizationItemController">
+   <children>
+      <ImageView fx:id="civIcon" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/frontier/citizenIcon.png" />
+         </image>
+      </ImageView>
+      <Separator orientation="VERTICAL" />
+      <VBox>
+         <children>
+            <HBox VBox.vgrow="ALWAYS">
+               <children>
+                  <ChoiceBox fx:id="civChoiceBox" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <Label fx:id="civAbilities" text="Abilities:" textFill="WHITE" />
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+   </padding>
+</HBox>

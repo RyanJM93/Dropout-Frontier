@@ -1,0 +1,26 @@
+.custom-menu-item {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-padding: 0;
+}
+
+.custom-menu-item .check-box {
+    -fx-text-fill: black;
+}
+
+.custom-menu-item .label {
+    -fx-text-fill: black;
+}
+
+.custom-menu-item:focused {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.custom-menu-item:focused .check-box {
+    -fx-text-fill: black;
+}
+
+.custom-menu-item:focused .label {
+    -fx-text-fill: black;
+}

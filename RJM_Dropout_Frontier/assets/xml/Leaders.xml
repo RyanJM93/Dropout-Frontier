@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Leaders>
+	<Leader name="Diarmait mac Cerbaill">
+		<Description text="Diarmait mac Cerbaill (died c. 565) was King of Tara or High King of Ireland. According to traditions, he was the last High King to follow the pagan rituals of inauguration, the ban-feis or marriage to goddess of the land.While many later stories were attached to Diarmait, he was a historical ruler and his descendants were of great significance in Medieval Ireland. He is not to be confused with the later Diarmait mac Cerbaill (King of Osraige), son of king Cerball mac DÃºnlainge."/>
+		<Color name="ShamrockGreen">
+			<r>0</r>
+			<g>158</g>
+			<b>96</b>
+		</Color>
+		<Civilization name="Gaelic Ireland"/>
+	</Leader>
+	<Leader name="Richard I">
+		<Description text=""/>
+		<Color name="EnglishRed">
+			<r>192</r>
+			<g>0</g>
+			<b>0</b>
+		</Color>
+		<Civilization name="Kingdom of England"/>
+	</Leader>
+	<Leader name="Philip II">
+		<Description text=""/>
+		<Color name="FrenchBlue">
+			<r>0</r>
+			<g>114</g>
+			<b>187</b>
+		</Color>
+		<Civilization name="Kingdom of France"/>
+	</Leader>
+	<Leader name="Saladin">
+		<Description text=""/>
+		<Color name="PureWhite">
+			<r>255</r>
+			<g>255</g>
+			<b>255</b>
+		</Color>
+		<Civilization name="Ayyubid Sultanate"/>
+	</Leader>
+	<Leader name="Harald Bluetooth">
+		<Description text=""/>
+		<Color name="VikingBrown">
+			<r>102</r>
+			<g>51</g>
+			<b>0</b>
+		</Color>
+		<Civilization name="Kingdom of Denmark"/>
+	</Leader>
+	<Leader name="Harald Hardrada">
+		<Description text=""/>
+		<Color name="NorwegianBlue">
+			<r>0</r>
+			<g>38</g>
+			<b>100</b>
+		</Color>
+		<Civilization name="Kingdom of Norway"/>
+	</Leader>
+	<Leader name="Gustavus Adolphus">
+		<Description text=""/>
+		<Color name="SwedishBlue">
+			<r>0</r>
+			<g>99</g>
+			<b>156</b>
+		</Color>
+		<Civilization name="Kingdom of Sweden"/>
+	</Leader>
+	<Leader name="Carl Mannerheim">
+		<Description text=""/>
+		<Civilization name="Republic of Finland"/>
+		<Color name="FinnishWhite">
+			<r>248</r>
+			<g>248</g>
+			<b>248</b>
+		</Color>
+	</Leader>
+	<Leader name="Elon Musk">
+		<Description text=""/>
+		<Civilization name="United States of America"/>
+		<Color name="FreedomBlue">
+			<r>41</r>
+			<g>62</g>
+			<b>131</b>
+		</Color>
+	</Leader>
+</Leaders>
