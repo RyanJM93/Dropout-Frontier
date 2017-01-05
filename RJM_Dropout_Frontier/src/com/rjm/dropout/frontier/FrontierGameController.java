@@ -299,6 +299,7 @@ public class FrontierGameController implements IGameController {
 	
 	public void enterPlanetMap(){
 		FrontierModel.getInstance().setFrontierGameController(this);
+		MediaModel.getInstance().playPlanetMapMusic();
 		GlobalModel.getInstance().getStage().setScene(getScene());
 	}
 
@@ -635,15 +636,29 @@ public class FrontierGameController implements IGameController {
 							// TODO transition to solar system scene
 							System.out.println("Traveling to Solar System");
 							
-							SnapshotParameters param = new SnapshotParameters();
-							param.setDepthBuffer(true);
-							param.setFill(Color.TRANSPARENT);
-							WritableImage snapshot = getMapGroup().snapshot(param, null);
-							
-							SolarSystemModel.getInstance().planetMap.values().forEach(planet -> {
-								planet.setDiffuseMap(snapshot);
-							});
-							solarSystemController.enterSystem();
+							try {
+								SnapshotParameters param = new SnapshotParameters();
+								param.setDepthBuffer(true);
+								param.setFill(Color.TRANSPARENT);
+								WritableImage snapshot = getMapGroup().snapshot(param, null);
+								
+								SolarSystemModel.getInstance().planetMap.values().forEach(planet -> {
+									planet.setDiffuseMap(snapshot);
+								});
+								solarSystemController.enterSystem();
+							} catch (IllegalArgumentException e) {
+
+								String errMessage = "Map too big to screenshot";
+								System.out.println(errMessage);
+								
+								Alert alert = new Alert(AlertType.ERROR);
+								alert.setHeaderText("Asset loading error");
+								alert.setContentText(errMessage);
+
+								alert.showAndWait()
+								.filter(response -> response == ButtonType.OK)
+								.ifPresent(response -> alert.close());
+							}
 						}
 						scrollCount.set(0);
 					}));
@@ -962,20 +977,20 @@ public class FrontierGameController implements IGameController {
 
 	public void toggleGrid(){
 
-		double strokeWidth = 0.0;
-
-		if(!isGridOn){
-			strokeWidth = 1.0;
-			isGridOn = true;
-		} else {
-			strokeWidth = 0.0;
-			isGridOn = false;
-		}
-
-		for(Node node : getExploredGroup().getChildren()){
-			Polygon hexagon = (Polygon) node;
-			hexagon.setStrokeWidth(strokeWidth);
-		}
+//		double strokeWidth = 0.0;
+//
+//		if(!isGridOn){
+//			strokeWidth = 1.0;
+//			isGridOn = true;
+//		} else {
+//			strokeWidth = 0.0;
+//			isGridOn = false;
+//		}
+//
+//		for(Node node : getExploredGroup().getChildren()){
+//			Polygon hexagon = (Polygon) node;
+//			hexagon.setStrokeWidth(strokeWidth);
+//		}
 	}
 
 	@FXML
@@ -1075,6 +1090,8 @@ public class FrontierGameController implements IGameController {
 		}
 		
 		mapTile.setIsMapTile(true);
+
+		mapTile.setExploredGroup(exploredGroup);
 		
 		Point point = hex.getPoint();
 		

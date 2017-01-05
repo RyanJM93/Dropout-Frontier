@@ -78,7 +78,7 @@ public class FrontierMainMenuController extends Application {
 	@Override
 	public void start(Stage stage) {
 		
-		FrontierModel.getInstance().setFrontierMainMenuController(this);
+		GlobalModel.getInstance().setFrontierMainMenuController(this);
 		
 		stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("images/menu/DropoutIcon.png")));
 

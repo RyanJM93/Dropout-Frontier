@@ -228,6 +228,7 @@ public class SolarSystemController implements IGameController {
 	}
 	
 	public void enterSystem(){
+		MediaModel.getInstance().playSolarSystemMusic();
 		GlobalModel.getInstance().getStage().setScene(getScene());
 	}
 
@@ -781,8 +782,6 @@ public class SolarSystemController implements IGameController {
 			SolarSystemModel.getInstance().hexMap.keySet().forEach(key -> {
 				BorderTile.createGridTileFlat(SolarSystemModel.getInstance().hexMap.get(key), getGridGroup());
 			});
-			
-			isGridOn = true;
 		}
 		
 

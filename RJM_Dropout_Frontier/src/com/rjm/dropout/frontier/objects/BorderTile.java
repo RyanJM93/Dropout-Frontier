@@ -31,7 +31,13 @@ import javafx.scene.shape.Shape;
 
 public class BorderTile {
 	
-	Group exploredGroup;
+	private Group exploredGroup;
+	public Group getExploredGroup() {
+		return exploredGroup;
+	}
+	public void setExploredGroup(Group exploredGroup) {
+		this.exploredGroup = exploredGroup;
+	}
 
 	private IHolding holding;
 	public void setHolding(IHolding holding){
@@ -74,8 +80,8 @@ public class BorderTile {
 
 	Integer turnCreated;
 
-	boolean isGridBorder = true;
-	static double gridOffset = 2.0;
+	boolean isGridBorder = false;
+	static double gridOffset = 10.0;
 	
 	boolean isMoveBorder = true;
 	boolean isSurrounded = false;
@@ -125,7 +131,7 @@ public class BorderTile {
 
 			Point3D tilePoint3D = findPoint(hex.mapRadius+newRadiusModifier, hex.angleX, hex.angleY, hex.latitude);
 
-			borderTile.exploredGroup = exploredGroup;
+			borderTile.setExploredGroup(exploredGroup);
 			
 			borderTile.isMoveBorder = isMoveBorder;
 			if(!isMoveBorder){
@@ -174,7 +180,7 @@ public class BorderTile {
 
 			Point3D tilePoint3D = findPoint(hex.mapRadius+newRadiusModifier, hex.angleX, hex.angleY, hex.latitude);
 
-			borderTile.exploredGroup = exploredGroup;
+			borderTile.setExploredGroup(exploredGroup);
 			
 			borderTile.isGridBorder = true;
 			
@@ -214,7 +220,7 @@ public class BorderTile {
 			Point3D tilePoint3D = new Point3D(hex.getPoint3D().getX(), hex.getPoint3D().getY(), hex.getPoint3D().getZ()-gridOffset);
 			System.out.println(tilePoint3D);
 
-			borderTile.exploredGroup = exploredGroup;
+			borderTile.setExploredGroup(exploredGroup);
 			
 			borderTile.isGridBorder = true;
 			
@@ -945,12 +951,12 @@ public class BorderTile {
 		this.hexagon.setStrokeWidth(0.0);
 
 		if(!this.borderLines.isEmpty()){
-			exploredGroup.getChildren().removeAll(borderLines);
+			getExploredGroup().getChildren().removeAll(borderLines);
 			borderLines.clear();
 		}
 
 		this.borderLines = drawBorder();
-		exploredGroup.getChildren().addAll(borderLines);
+		getExploredGroup().getChildren().addAll(borderLines);
 	}
 
 	public void setHexView(HexView hexView) {
@@ -972,6 +978,9 @@ public class BorderTile {
 		int delta = currentTurn - turnCreated;
 
 		if(deFacto.get() && delta == 2 && holding instanceof City /*getCounty() == null*/){  // TODO Change delta to match game speed
+			deFacto.set(false);
+			System.out.println("Now Permanent");
+		} else if(deFacto.get() && getCounty() != null){
 			deFacto.set(false);
 			System.out.println("Now Permanent");
 		}
