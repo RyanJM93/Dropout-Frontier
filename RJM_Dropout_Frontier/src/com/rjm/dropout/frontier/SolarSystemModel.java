@@ -18,6 +18,7 @@ import com.rjm.dropout.frontier.tasks.ProcessTurnTask;
 
 import javafx.application.Platform;
 import javafx.geometry.Point3D;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -76,7 +77,7 @@ public class SolarSystemModel {
 
 	public HashMap<Point, HexView> emptySpaceMap;
 	
-	public HashMap<Point, PlanetEarth> planetMap;
+	public HashMap<Point, Node> planetMap;
 	
 	public void processNextTurn(final SolarSystemController solarSystemController){
 		ProcessTurnTask task = new ProcessTurnTask();
@@ -154,7 +155,7 @@ public class SolarSystemModel {
 		
 		emptySpaceMap = new HashMap<Point, HexView>();
 		
-		planetMap = new HashMap<Point, PlanetEarth>();
+		planetMap = new HashMap<Point, Node>();
 	}
 
 	ArrayList<Point> getAdjacentPoints(Point point){

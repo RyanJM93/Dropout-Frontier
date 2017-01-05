@@ -21,6 +21,7 @@ public class MapGenTextures {
 	public static Image ICECAPTEXTURE = null;
 
 	public static Image EMPTYSPACETEXTURE = null;
+	public static Image STARTEXTURE = null;
 
 	// Resources - Animals
 	public static Image BEAR = null;
@@ -89,6 +90,7 @@ public class MapGenTextures {
 				ICECAPTEXTURE = new Image("images/terrain/icecap.jpg");
 				
 				EMPTYSPACETEXTURE = new Image("images/terrain/emptyspace.png");
+				STARTEXTURE = new Image("images/planets/texture_sun.jpg");
 
 				// Resources - Animals
 				BEAR = new Image("images/resources/animals/bearResource.png");

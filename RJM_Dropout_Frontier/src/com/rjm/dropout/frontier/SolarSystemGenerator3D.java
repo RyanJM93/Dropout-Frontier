@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rjm.dropout.frontier.enums.Elevation;
+import com.rjm.dropout.frontier.enums.PlanetType;
+import com.rjm.dropout.frontier.enums.StarType;
 import com.rjm.dropout.frontier.enums.Terrain;
 import com.rjm.dropout.frontier.objects.HexView;
-import com.rjm.dropout.frontier.objects.Planet;
-import com.rjm.dropout.frontier.objects.PlanetEarth;
+import com.rjm.dropout.frontier.objects.SimpleCosmicBody;
+import com.rjm.dropout.frontier.objects.Star;
 import com.rjm.dropout.frontier.objects.Point;
 import com.rjm.dropout.frontier.objects.TileTooltipController;
 
-import javafx.animation.Interpolator;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
 import javafx.geometry.Point3D;
+import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.PointLight;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
 import javafx.util.Pair;
 
 public class SolarSystemGenerator3D {
@@ -35,20 +35,18 @@ public class SolarSystemGenerator3D {
 		
 		System.out.println("----------------Generating Solar System----------------");
 
-		List<HexView> HexViews = new ArrayList<HexView>();
+		List<HexView> hexViews = new ArrayList<HexView>();
 
-		flatMethod(HexViews);
-
-		//		while(numContinents > 0){
-		//			numContinents = generateContinent(this.continentSize, this.worldAge, numContinents);
-		//		}
-
+		flatMethod(hexViews);
+		
+		trimToHexagon(hexViews);
+		
 		generateSystem();
 
-		return HexViews;
+		return hexViews;
 	}
 
-	private void flatMethod(List<HexView> HexViews){
+	private void flatMethod(List<HexView> hexViews){
 
 		int midX = FrontierModel.getInstance().BWIDTH/2;
 		int midY = FrontierModel.getInstance().BHEIGHT/2;
@@ -85,9 +83,7 @@ public class SolarSystemGenerator3D {
 					Point point = new Point(counter, currentHeight);
 					hexView.setPoint(point);
 
-					HexViews.add(hexView);
-
-//					System.out.println("New Tile at: (" + counter + "," + currentHeight + ")");
+					hexViews.add(hexView);
 
 					SolarSystemModel.getInstance().emptySpaceMap.put(point, hexView);
 					SolarSystemModel.getInstance().hexMap.put(point, hexView);
@@ -102,6 +98,205 @@ public class SolarSystemGenerator3D {
 			currentHeight++;
 			counter = 0;
 		}
+	}
+	
+	private void trimToHexagon(List<HexView> hexViews){
+		
+		int x;
+		int y;
+		
+		// Trim NW Corner
+		
+		x = 0;
+		y = FrontierModel.getInstance().BHEIGHT/2-1;
+
+		while(y >= 0){
+			
+			// Remove hex at point along line
+			
+			Point point = new Point(x,y);
+			
+			HexView hex = SolarSystemModel.getInstance().hexMap.get(point);
+			SolarSystemModel.getInstance().hexMap.remove(hex);
+			SolarSystemModel.getInstance().emptySpaceMap.remove(hex);
+			hexViews.remove(hex);
+			
+			// Remove hexs up to that point
+			
+			int recursiveX = 0;
+			while(recursiveX < x){
+				
+				boolean xIsEven = x%2 == 0;
+				
+				Point point2 = new Point(recursiveX,y);
+				
+				HexView hex2 = SolarSystemModel.getInstance().hexMap.get(point2);
+				SolarSystemModel.getInstance().hexMap.remove(hex2);
+				SolarSystemModel.getInstance().emptySpaceMap.remove(hex2);
+				hexViews.remove(hex2);
+				
+				if(!xIsEven){
+					Point point3 = new Point(recursiveX,y+1);
+					
+					HexView hex3 = SolarSystemModel.getInstance().hexMap.get(point3);
+					SolarSystemModel.getInstance().hexMap.remove(hex3);
+					SolarSystemModel.getInstance().emptySpaceMap.remove(hex3);
+					hexViews.remove(hex3);
+				}
+				
+				recursiveX++;
+			}
+			
+			int yMod = (x%2 == 0) ? 2 : 1;
+			
+			x+=1;
+			y-=yMod;
+		}
+		
+		// Trim NE Corner
+		
+		x = FrontierModel.getInstance().BWIDTH-1;
+		y = FrontierModel.getInstance().BHEIGHT/2-1;
+
+		while(y >= 0){
+			
+			// Remove hex at point along line
+			
+			Point point = new Point(x,y);
+			
+			HexView hex = SolarSystemModel.getInstance().hexMap.get(point);
+			SolarSystemModel.getInstance().hexMap.remove(hex);
+			SolarSystemModel.getInstance().emptySpaceMap.remove(hex);
+			hexViews.remove(hex);
+			
+			// Remove hexs up to that point
+			
+			int recursiveX = FrontierModel.getInstance().BWIDTH-1;
+			while(recursiveX > x){
+				
+				boolean xIsEven = x%2 == 0;
+				
+				Point point2 = new Point(recursiveX,y);
+				
+				HexView hex2 = SolarSystemModel.getInstance().hexMap.get(point2);
+				SolarSystemModel.getInstance().hexMap.remove(hex2);
+				SolarSystemModel.getInstance().emptySpaceMap.remove(hex2);
+				hexViews.remove(hex2);
+				
+				if(!xIsEven){
+					Point point3 = new Point(recursiveX,y+1);
+					
+					HexView hex3 = SolarSystemModel.getInstance().hexMap.get(point3);
+					SolarSystemModel.getInstance().hexMap.remove(hex3);
+					SolarSystemModel.getInstance().emptySpaceMap.remove(hex3);
+					hexViews.remove(hex3);
+				}
+				
+				recursiveX--;
+			}
+			
+			int yMod = (x%2 == 0) ? 2 : 1;
+			
+			x-=1;
+			y-=yMod;
+		}
+		
+		// Trim SW Corner
+		
+		x = 0;
+		y = (FrontierModel.getInstance().BHEIGHT/2)+2;
+
+		while(y < FrontierModel.getInstance().BHEIGHT){
+			
+			// Remove hex at point along line
+			
+			Point point = new Point(x,y);
+			
+			HexView hex = SolarSystemModel.getInstance().hexMap.get(point);
+			SolarSystemModel.getInstance().hexMap.remove(hex);
+			SolarSystemModel.getInstance().emptySpaceMap.remove(hex);
+			hexViews.remove(hex);
+			
+			// Remove hexs up to that point
+			
+			int recursiveX = 0;
+			while(recursiveX < x){
+				
+				boolean xIsEven = x%2 == 0;
+				
+				Point point2 = new Point(recursiveX,y);
+				
+				HexView hex2 = SolarSystemModel.getInstance().hexMap.get(point2);
+				SolarSystemModel.getInstance().hexMap.remove(hex2);
+				SolarSystemModel.getInstance().emptySpaceMap.remove(hex2);
+				hexViews.remove(hex2);
+				
+				if(xIsEven){
+					Point point3 = new Point(recursiveX,y-1);
+					
+					HexView hex3 = SolarSystemModel.getInstance().hexMap.get(point3);
+					SolarSystemModel.getInstance().hexMap.remove(hex3);
+					SolarSystemModel.getInstance().emptySpaceMap.remove(hex3);
+					hexViews.remove(hex3);
+				}
+				
+				recursiveX++;
+			}
+			
+			int yMod = (x%2 == 0) ? 1 : 2;
+			
+			x+=1;
+			y+=yMod;
+		}
+		
+		// Trim SE Corner
+		
+		x = FrontierModel.getInstance().BWIDTH-1;
+		y = (FrontierModel.getInstance().BHEIGHT/2)+2;
+
+		while(y < FrontierModel.getInstance().BHEIGHT){
+			
+			// Remove hex at point along line
+			
+			Point point = new Point(x,y);
+			
+			HexView hex = SolarSystemModel.getInstance().hexMap.get(point);
+			SolarSystemModel.getInstance().hexMap.remove(hex);
+			SolarSystemModel.getInstance().emptySpaceMap.remove(hex);
+			hexViews.remove(hex);
+			
+			// Remove hexs up to that point
+			
+			int recursiveX = FrontierModel.getInstance().BWIDTH-1;
+			while(recursiveX > x){
+				
+				boolean xIsEven = x%2 == 0;
+				
+				Point point2 = new Point(recursiveX,y);
+				
+				HexView hex2 = SolarSystemModel.getInstance().hexMap.get(point2);
+				SolarSystemModel.getInstance().hexMap.remove(hex2);
+				SolarSystemModel.getInstance().emptySpaceMap.remove(hex2);
+				hexViews.remove(hex2);
+				
+				if(xIsEven){
+					Point point3 = new Point(recursiveX,y-1);
+					
+					HexView hex3 = SolarSystemModel.getInstance().hexMap.get(point3);
+					SolarSystemModel.getInstance().hexMap.remove(hex3);
+					SolarSystemModel.getInstance().emptySpaceMap.remove(hex3);
+					hexViews.remove(hex3);
+				}
+				
+				recursiveX--;
+			}
+			
+			int yMod = (x%2 == 0) ? 1 : 2;
+			
+			x-=1;
+			y+=yMod;
+		}
+		
 	}
 
 	private HexView createHexView(Terrain terrain, Elevation elevation, int x, int y, Point3D point3D){
@@ -188,110 +383,191 @@ public class SolarSystemGenerator3D {
 	}
 
 	private void generateSystem() {
+		
+		List<Node> objectsToAddToScene = new ArrayList<Node>();
+		
 		HexView centerHex = SolarSystemModel.getInstance().hexMap.getOrDefault(
-				new Point(FrontierModel.getInstance().BWIDTH/2,FrontierModel.getInstance().BHEIGHT/2), null);
+				new Point((FrontierModel.getInstance().BWIDTH/2),(FrontierModel.getInstance().BHEIGHT/2)), null);
 		
-		PlanetEarth star = new PlanetEarth();
-		star.placeAt(centerHex.getPoint3D());
+		Point3D centerPoint = new Point3D(centerHex.getPoint3D().getX(), centerHex.getPoint3D().getY()+50, centerHex.getPoint3D().getZ());
+				
+//		Pair<Star,Group> starGroup = addStarToSystem(centerPoint, StarType.YELLOW);		
+//		SolarSystemModel.getInstance().planetMap.put(centerHex.getPoint(), starGroup.getKey());
+//		
+//		objectsToAddToScene.add(starGroup.getValue());
+//        
+//        List<StackPane> planets = new ArrayList<StackPane>();
+//        planets.add(addPlanetToStar(starGroup.getKey()));
+//        
+//        objectsToAddToScene.addAll(planets);
 		
-		SolarSystemModel.getInstance().planetMap.put(centerHex.getPoint(), star);
-		solarSystemController.getPlanetGroup().getChildren().add(star);
+		generateSolSystem(objectsToAddToScene, centerHex);
+
+		solarSystemController.getPlanetGroup().getChildren().addAll(objectsToAddToScene);
+        
+	}
+	
+	private void generateSolSystem(List<Node> objectsToAddToScene, HexView centerHex){
+		Point3D centerPoint = new Point3D(centerHex.getPoint3D().getX(), centerHex.getPoint3D().getY()+50, centerHex.getPoint3D().getZ());
 		
-		Pair<? extends Planet, Pair<Ellipse,PathTransition>> planetPair = addPlanetToStar(star, centerHex.getPoint3D());
+		Pair<Star,Group> starGroup = addStarToSystem(centerPoint, StarType.YELLOW);		
+		SolarSystemModel.getInstance().planetMap.put(centerHex.getPoint(), starGroup.getKey());
 		
-		Pair<? extends Planet, Pair<Ellipse,PathTransition>> moonPair = addMoonToPlanet(planetPair.getKey(), centerHex.getPoint3D());
+		objectsToAddToScene.add(starGroup.getValue());
+        
+        List<StackPane> planets = new ArrayList<StackPane>();
+        planets.add(addPlanetToStar(starGroup.getKey(), PlanetType.MERCURY));
+        planets.add(addPlanetToStar(starGroup.getKey(), PlanetType.VENUS));
+        planets.add(addPlanetToStar(starGroup.getKey(), PlanetType.EARTH));
+        planets.add(addPlanetToStar(starGroup.getKey(), PlanetType.MARS));
+        planets.add(addPlanetToStar(starGroup.getKey(), PlanetType.JUPITER));
+        planets.add(addPlanetToStar(starGroup.getKey(), PlanetType.SATURN));
+        planets.add(addPlanetToStar(starGroup.getKey(), PlanetType.URANUS));
+        planets.add(addPlanetToStar(starGroup.getKey(), PlanetType.NEPTUNE));
+        planets.add(addPlanetToStar(starGroup.getKey(), PlanetType.PLUTO));
+        
+        objectsToAddToScene.addAll(planets);
+	}
+	
+	private Pair<Star,Group> addStarToSystem(Point3D centerPoint, StarType type){
+		Star star = new Star(type, 1000);
+		star.placeAt(centerPoint);
 		
-		planetPair.getValue().getValue().play();
-		moonPair.getValue().getValue().play();
+		PointLight pointLight = new PointLight(star.getType().getGlow());
+		pointLight.translateXProperty().bind(star.translateXProperty());
+		pointLight.translateYProperty().bind(star.translateYProperty());
+		pointLight.translateZProperty().bind(star.translateZProperty());
+		pointLight.setMouseTransparent(true);
 		
-        StackPane moonPane = new StackPane();
-        moonPane.translateXProperty().bind(planetPair.getKey().translateXProperty());
-        moonPane.translateYProperty().bind(planetPair.getKey().translateYProperty());
-        moonPane.getChildren().add(moonPair.getKey());
+		Group group = new Group(star,pointLight);
+		group.setPickOnBounds(false);
+		
+		return new Pair<Star,Group>(star,group);
+	}
+	
+	private StackPane addPlanetToStar(Node star, PlanetType type){
+		
+		Terrain terrain = null;
+		double distance = 0;
+		
+		switch (type) {
+			case EARTH:
+				terrain = Terrain.MARSH;
+				distance = 600;
+				break;
+			case GAS:
+				break;
+			case GASGIANT:
+				break;
+			case JUPITER:
+				terrain = Terrain.COAST;
+				distance = 1500;
+				break;
+			case LARGEROCK:
+				break;
+			case MARS:
+				terrain = Terrain.DESERT;
+				distance = 800;
+				break;
+			case MERCURY:
+				terrain = Terrain.TUNDRA;
+				distance = 200;
+				break;
+			case NEPTUNE:
+				terrain = Terrain.OCEAN;
+				distance = 2400;
+				break;
+			case PLUTO:
+				terrain = Terrain.SNOW;
+				distance = 2800;
+				break;
+			case SATURN:
+				terrain = Terrain.SAVANNAH;
+				distance = 1800;
+				break;
+			case SMALLROCK:
+				break;
+			case URANUS:
+				terrain = Terrain.COAST;
+				distance = 2100;
+				break;
+			case VENUS:
+				terrain = Terrain.SAVANNAH;
+				distance = 400;
+				break;
+			default:
+			break;
+		}
+		
+		SimpleCosmicBody planet = createPlanet(star, terrain, type.getRadius(), type.getDayLength(), distance);
+		planet.playOrbit();
+		
+		List<StackPane> moons = new ArrayList<StackPane>();
+		moons.add(addMoonToPlanet(planet));
 		
         StackPane planetPane = new StackPane();
-        planetPane.translateXProperty().bind(star.translateXProperty());
-        planetPane.translateYProperty().bind(star.translateYProperty());
-        planetPane.getChildren().add(moonPane);
-        planetPane.getChildren().add(planetPair.getKey());
+        planetPane.setPickOnBounds(false);
+        planetPane.getChildren().addAll(moons);
+        planetPane.getChildren().add(planet);
+        planetPane.getChildren().add(planet.getPath());
 
-		solarSystemController.getPlanetGroup().getChildren().add(planetPane);
+        double planetPaneWidth = planetPane.getBoundsInLocal().getWidth();
+        double planetPaneHeight = planetPane.getBoundsInLocal().getHeight();
         
+        System.out.println(planetPaneWidth + ", " + planetPaneHeight);
+        planetPane.translateXProperty().bind(star.translateXProperty().subtract(planetPaneWidth/2));
+        planetPane.translateYProperty().bind(star.translateYProperty().subtract(planetPaneHeight/2));
+        
+        return planetPane;
 	}
 	
-	private Pair<? extends Planet, Pair<Ellipse,PathTransition>> addPlanetToStar(Node star, Point3D startHex){
+	private SimpleCosmicBody createPlanet(Node star, Terrain biome, double size, double yearLength, double distance){
 		
-		Planet planet = new Planet(50,24);
-		planet.setDiffuseMap(MapGenTextures.DESERTTEXTURE);
-		planet.placeAt(startHex);
-		
-//		SolarSystemModel.getInstance().planetMap.put(centerHex.getPoint(), earth);
-//		solarSystemController.getPlanetGroup().getChildren().add(planet);
+		SimpleCosmicBody planet = new SimpleCosmicBody(size,24);
+		planet.setBiome(biome);
 		
 		Ellipse ellipsePlanet = new Ellipse();
-//        ellipsePlanet.setCenterX(star.getTranslateX());
-//        ellipsePlanet.setCenterY(star.getTranslateY());
-//        ellipsePlanet.translateXProperty().bind(star.translateXProperty());
-//        ellipsePlanet.translateYProperty().bind(star.translateYProperty());
-        ellipsePlanet.setRadiusX(star.getBoundsInLocal().getWidth() / 2.0 + 1.01671388 * 170);
-        ellipsePlanet.setRadiusY(star.getBoundsInLocal().getHeight() / 2.0 + 0.98329134 * 170);
-
-        ellipsePlanet.setStrokeWidth(5);
-        ellipsePlanet.setStroke(Color.GREEN);
-
-//        ellipsePlanet.setRadiusX(270);
-//        ellipsePlanet.setRadiusY(270);        
-
-//		solarSystemController.getPlanetGroup().getChildren().add(ellipsePlanet);
-         
-        PathTransition transitionPlanet = new PathTransition();
-        transitionPlanet.setPath(ellipsePlanet);
-        transitionPlanet.setNode(planet);
-        transitionPlanet.setInterpolator(Interpolator.LINEAR);
-        transitionPlanet.setDuration(Duration.seconds(10.000017421));
-        transitionPlanet.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        transitionPlanet.setCycleCount(Timeline.INDEFINITE);
-         
-//        transitionPlanet.play();
+        ellipsePlanet.setRadiusX(star.getBoundsInLocal().getWidth() / 2.0 + 1.01671388 * distance);
+        ellipsePlanet.setRadiusY(star.getBoundsInLocal().getHeight() / 2.0 + 0.98329134 * distance);
+        ellipsePlanet.setStrokeWidth(1);
+        ellipsePlanet.setStroke(Color.STEELBLUE);
+        ellipsePlanet.setFill(Color.TRANSPARENT);
+        ellipsePlanet.setMouseTransparent(true);
         
-        return new Pair<Planet,  Pair<Ellipse,PathTransition>>(planet, new Pair<Ellipse,PathTransition>(ellipsePlanet,transitionPlanet));
+        planet.setPath(ellipsePlanet, yearLength);
+        
+        return planet;
 	}
 	
-	private Pair<? extends Planet, Pair<Ellipse,PathTransition>> addMoonToPlanet(Node planet, Point3D startHex){
+	private StackPane addMoonToPlanet(Node planet){
+		SimpleCosmicBody moon = createMoon(planet, Terrain.ICECAP, 30, 100);
+		moon.playOrbit();
 		
-		Planet moon = new Planet(15,24);
-		moon.setDiffuseMap(MapGenTextures.TUNDRATEXTURE);
-		moon.placeAt(startHex);
-		
-//		SolarSystemModel.getInstance().planetMap.put(centerHex.getPoint(), moon);
-//		solarSystemController.getPlanetGroup().getChildren().add(moon);
+        StackPane moonPane = new StackPane();
+        moonPane.setPickOnBounds(false);
+        moonPane.translateXProperty().bind(planet.translateXProperty());
+        moonPane.translateYProperty().bind(planet.translateYProperty());
+        moonPane.getChildren().add(moon);
+        moonPane.getChildren().add(moon.getPath());
         
+        return moonPane;
+	}
+	
+	private SimpleCosmicBody createMoon(Node planet, Terrain biome, double monthLength, double distance){
+		
+		SimpleCosmicBody moon = new SimpleCosmicBody(15,24);
+		moon.setBiome(biome);        
          
         Ellipse ellipseMoon = new Ellipse();
-//        ellipseMoon.setCenterX(planet.getTranslateX());
-//        ellipseMoon.setCenterY(planet.getTranslateY());
-//        ellipseMoon.translateXProperty().bind(planet.translateXProperty());
-//        ellipseMoon.translateYProperty().bind(planet.translateYProperty());
-        ellipseMoon.setRadiusX(planet.getBoundsInLocal().getWidth() / 2.0 + 1.01671388 * 70);
-        ellipseMoon.setRadiusY(planet.getBoundsInLocal().getHeight() / 2.0 + 0.98329134 * 70);
-
-        ellipseMoon.setStrokeWidth(5);
-        ellipseMoon.setStroke(Color.BLUE);
+        ellipseMoon.setRadiusX(planet.getBoundsInLocal().getWidth() / 2.0 + 1.01671388 * distance);
+        ellipseMoon.setRadiusY(planet.getBoundsInLocal().getHeight() / 2.0 + 0.98329134 * distance);
+        ellipseMoon.setStrokeWidth(1);
+        ellipseMoon.setStroke(Color.LIGHTGRAY);
+        ellipseMoon.setFill(Color.TRANSPARENT);
+        ellipseMoon.setMouseTransparent(true);
         
-//        ellipseMoon.setRadiusX(270);
-//        ellipseMoon.setRadiusY(270);
-
-//		solarSystemController.getPlanetGroup().getChildren().add(ellipseMoon);
-         
-        PathTransition transitionMoon = new PathTransition();
-        transitionMoon.setPath(ellipseMoon);
-        transitionMoon.setNode(moon);
-        transitionMoon.setInterpolator(Interpolator.LINEAR);
-        transitionMoon.setDuration(Duration.seconds(1.000017421));
-        transitionMoon.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        transitionMoon.setCycleCount(Timeline.INDEFINITE);
-//        transitionMoon.play();
+        moon.setPath(ellipseMoon, monthLength);
         
-        return new Pair<Planet, Pair<Ellipse,PathTransition>>(moon, new Pair<Ellipse,PathTransition>(ellipseMoon,transitionMoon));
+        return moon;
 	}
 }

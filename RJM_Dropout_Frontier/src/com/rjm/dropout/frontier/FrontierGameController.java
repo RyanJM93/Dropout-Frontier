@@ -20,6 +20,7 @@ import com.rjm.dropout.frontier.objects.HexView;
 import com.rjm.dropout.frontier.objects.IUnit;
 import com.rjm.dropout.frontier.objects.Player;
 import com.rjm.dropout.frontier.objects.Point;
+import com.rjm.dropout.frontier.objects.SimpleCosmicBody;
 import com.rjm.dropout.frontier.utilities.FXMLUtils;
 
 import javafx.animation.Animation;
@@ -643,7 +644,7 @@ public class FrontierGameController implements IGameController {
 								WritableImage snapshot = getMapGroup().snapshot(param, null);
 								
 								SolarSystemModel.getInstance().planetMap.values().forEach(planet -> {
-									planet.setDiffuseMap(snapshot);
+									((SimpleCosmicBody) planet).setDiffuseMap(snapshot);
 								});
 								solarSystemController.enterSystem();
 							} catch (IllegalArgumentException e) {

@@ -29,8 +29,10 @@ public class SolarSystemTestUtility extends Application {
 		
 		GlobalModel.getInstance().setStage(stage);
 		
-		FrontierModel.getInstance().BWIDTH = 32;
-		FrontierModel.getInstance().BHEIGHT = 32;
+		int size = 5;
+		
+		FrontierModel.getInstance().BWIDTH = (12*size) + 1;
+		FrontierModel.getInstance().BHEIGHT = (10*size);
 		
 		MapGenTextures.loadTextures();
 		

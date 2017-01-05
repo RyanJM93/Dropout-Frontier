@@ -2,7 +2,7 @@ package com.rjm.dropout.frontier.objects;
 
 import javafx.scene.image.Image;
 
-public class PlanetEarth extends Planet {
+public class PlanetEarth extends SimpleCosmicBody {
 
 	public PlanetEarth() {
 		super(EARTH_RADIUS, ROTATE_SECS);
